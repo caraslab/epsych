@@ -1,5 +1,5 @@
-function [RUNTIME,varargout]  = cl_ReadSynapseTags(SYN,RUNTIME)
-%[RUNTIME,varargout]  = cl_ReadSynapseTags(SYN,RUNTIME)
+function [RUNTIME,varargout]  = ReadSynapseTags(SYN,RUNTIME)
+%[RUNTIME,varargout]  = ReadSynapseTags(SYN,RUNTIME)
 %
 %Custom function for Caras Lab.
 %Reads parameter tags using Synapse API
@@ -8,11 +8,22 @@ function [RUNTIME,varargout]  = cl_ReadSynapseTags(SYN,RUNTIME)
 %
 %Written by ML Caras Apr 7 2018
 %Updated by ML Caras Oct 19 2019
+%Updated by ML Caras Nov 24 2019
 
 warning('off','MATLAB:strrep:InvalidInputType')
 
-%Intialize some cell arrays
-nMods = numel(RUNTIME.TDT.name);
+%Find out how many modules there are.
+%Note: When run in Matlab 2019b, the command below gave an error 
+%on the first time it was called, but not the second. No idea why- adding
+%a pause of a full second to let RUNTIME initialize didn't solve it.
+%Therefore, we'll embed the command in a try/catch statement, so it ends up
+%running the second time around.
+try
+    nMods = numel(RUNTIME.TDT.name);
+catch
+    nMods = numel(RUNTIME.TDT.name);
+end
+
 for i = 1:nMods
     dinfo(i).tags = {[]};
     dinfo(i).datatypes = {[]};

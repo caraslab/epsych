@@ -227,3 +227,44 @@ Failed to launch behavior performance GUI: cl_AversiveDetection
 
 12:04:55.911,ExptDispatch,104:  1. 'CarasLabTest'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_behavior.prot');">Aversive_behavior</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
 12:04:56.002,ExptDispatch,244: Experiment is not using OpenEx
+12:35:27.606,ExptDispatch,104:  1. 'CarasLabTest'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_ephys.prot');">Aversive_ephys</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
+12:35:27.719,ExptDispatch,130: Experiment will be run with Synapse
+13:15:30.192,ExptDispatch,104:  1. 'CarasLabTest'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_ephys.prot');">Aversive_ephys</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
+13:15:30.333,ExptDispatch,130: Experiment will be run with Synapse
+13:19:32.080,ExptDispatch,104:  1. 'CarasLabTest'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_ephys.prot');">Aversive_ephys</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
+13:19:32.174,ExptDispatch,130: Experiment will be run with Synapse
+13:34:08.559,ExptDispatch,104:  1. 'CarasLabTest'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_ephys.prot');">Aversive_ephys</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
+13:34:08.700,ExptDispatch,130: Experiment will be run with Synapse
+13:35:36.135,ExptDispatch,104:  1. 'CarasLabTest'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_ephys.prot');">Aversive_ephys</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
+13:35:36.229,ExptDispatch,130: Experiment will be run with Synapse
+13:38:58.646,ExptDispatch,104:  1. 'CarasLabTest'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_ephys.prot');">Aversive_ephys</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
+13:38:58.752,ExptDispatch,130: Experiment will be run with Synapse
+13:42:04.400,ExptDispatch,104:  1. 'CarasLabTest'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_ephys.prot');">Aversive_ephys</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
+13:42:04.462,ExptDispatch,130: Experiment will be run with Synapse
+13:42:52.103,ExptDispatch,104:  1. 'CarasLabTest'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_ephys.prot');">Aversive_ephys</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
+13:42:52.213,ExptDispatch,130: Experiment will be run with Synapse
+13:43:24.946,ExptDispatch,104:  1. 'CarasLabTest'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_ephys.prot');">Aversive_ephys</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
+13:43:25.024,ExptDispatch,130: Experiment will be run with Synapse
+13:45:28.405,ExptDispatch,104:  1. 'CarasLabTest'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_ephys.prot');">Aversive_ephys</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
+13:45:28.483,ExptDispatch,130: Experiment will be run with Synapse
+13:46:16.151,ExptDispatch,104:  1. 'CarasLabTest'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_ephys.prot');">Aversive_ephys</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
+13:46:16.214,ExptDispatch,130: Experiment will be run with Synapse
+13:46:24.216,ExptDispatch,340: System set to 'Preview'
+13:53:47.853,ExptDispatch,104:  1. 'CarasLabTest'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_ephys.prot');">Aversive_ephys</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
+13:53:47.963,ExptDispatch,130: Experiment will be run with Synapse
+13:54:57.217,ExptDispatch,104:  1. 'CarasLabTest'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_ephys.prot');">Aversive_ephys</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
+13:54:57.280,ExptDispatch,130: Experiment will be run with Synapse
+13:55:11.012,ExptDispatch,340: System set to 'Preview'
+13:57:26.372,ExptDispatch,104:  1. 'CarasLabTest'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_ephys.prot');">Aversive_ephys</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
+13:57:26.482,ExptDispatch,130: Experiment will be run with Synapse
+13:58:21.726,ExptDispatch,104:  1. 'CarasLabTest'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_ephys.prot');">Aversive_ephys</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
+13:58:21.835,ExptDispatch,130: Experiment will be run with Synapse
+13:58:26.995,ExptDispatch,340: System set to 'Preview'
+13:59:44.558,ExptDispatch,104:  1. 'CarasLabTest'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_ephys.prot');">Aversive_ephys</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
+13:59:44.669,ExptDispatch,130: Experiment will be run with Synapse
+14:01:15.719,ExptDispatch,104:  1. 'CarasLabTest'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_ephys.prot');">Aversive_ephys</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
+14:01:15.819,ExptDispatch,130: Experiment will be run with Synapse
+14:01:20.029,ExptDispatch,340: System set to 'Preview'
+14:06:51.993,ExptDispatch,104:  1. 'CarasLabTest'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_ephys.prot');">Aversive_ephys</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
+14:06:52.113,ExptDispatch,130: Experiment will be run with Synapse
+14:06:56.481,ExptDispatch,340: System set to 'Run'

@@ -1,5 +1,5 @@
-function params = cl_CorrectTagsSyn(params,mod)
-%params = cl_CorrectTagsSyn(params,mod)
+function params = correctTagsSyn(params,mod)
+%params = correctTagsSyn(params,mod)
 %
 %Correct parameter tag naming structure for compatibility with Synapse
 %legacy mode.

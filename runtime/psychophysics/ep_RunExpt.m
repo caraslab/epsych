@@ -160,7 +160,7 @@ switch COMMAND
             %controls can't be used at the same time as Synapse. Luckily,
             %the Synapse API fully penetrates the macros and reads all
             %tags.
-            RUNTIME = ReadSynapseTags(SYN,RUNTIME);
+             RUNTIME = ReadSynapseTags(SYN,RUNTIME);
             
             
             %Find the module that's running in legacy mode

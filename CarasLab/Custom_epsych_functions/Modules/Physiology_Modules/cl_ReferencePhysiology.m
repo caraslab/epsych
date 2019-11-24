@@ -77,6 +77,11 @@ if isempty(SYN_STATUS)
         gizmo = gizmos{i};
         params = AX.getParameterNames(gizmo);
         
+        if ~iscell(params)
+            continue
+        end
+        
+        
         if any(~cellfun('isempty',strfind(params,'WeightMatrix'))); %#ok<*STRCL1>
             chk = 1;
             break;
