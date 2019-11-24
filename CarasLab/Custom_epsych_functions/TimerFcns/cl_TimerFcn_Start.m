@@ -25,7 +25,7 @@ global FUNCS SYN_STATUS SYN
 % Make temporary directory in current folder for storing data during
 % runtime in case of a computer crash or Matlab error
 if ~isfield(RUNTIME,'DataDir') || ~isdir(RUNTIME.DataDir) %#ok<*ISDIR>
-    RUNTIME.DataDir = [cd filesep 'DATA'];
+    RUNTIME.DataDir = [cd filesep 'TempDataBackups'];
 end
 if ~isdir(RUNTIME.DataDir), mkdir(RUNTIME.DataDir); end
 
