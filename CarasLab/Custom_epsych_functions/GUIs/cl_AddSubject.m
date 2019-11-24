@@ -107,6 +107,9 @@ if isfield(S,'Age')
     end
 end
 
+if isfield(S,'recdepth')
+    set(h.recdepth,'String',S.RecordingDepth);
+end
 
 if isfield(S,'Notes')
     set(h.notes,'String',S.Notes);
@@ -153,6 +156,7 @@ S.Name    = strtrim(get(h.subject_name,'String'));
 S.Sex     = strtrim(get_string(h.sex));
 S.Condition = get_string(h.condition);
 S.Age = strtrim(get_string(h.age));
+S.RecordingDepth = strtrim(get(h.recdepth,'String'));
 S.Notes   = get(h.notes,'String');
 
 

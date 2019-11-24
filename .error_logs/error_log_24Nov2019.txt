@@ -127,3 +127,103 @@ Failed to launch behavior performance GUI: cl_AversiveDetection
 10:59:40.387,ExptDispatch,375: Experiment stopped at 24-Nov-2019 10:59
 11:10:29.205,ExptDispatch,104:  1. 'CarasLabTest'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_behavior.prot');">Aversive_behavior</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
 11:10:29.278,ExptDispatch,244: Experiment is not using OpenEx
+11:33:17.241,ExptDispatch,104:  1. 'CarasLabTest'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_behavior.prot');">Aversive_behavior</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
+11:33:17.335,ExptDispatch,244: Experiment is not using OpenEx
+11:33:19.829,vprintf,84: MATLAB:needMoreRhsOutputs
+11:33:19.835,vprintf,85: Insufficient number of outputs from right hand side of equal sign to satisfy assignment.
+11:33:19.839,vprintf,87: Stack 1
+	file:	D:\epsych\CarasLab\Custom_epsych_functions\Modules\Generic_Modules\cl_CreateLogFile.m
+	name:	cl_CreateLogFile
+	line:	24
+11:33:19.842,vprintf,87: Stack 2
+	file:	D:\epsych\CarasLab\Custom_epsych_functions\TrialFcns\cl_TrialFcn.m
+	name:	cl_TrialFcn
+	line:	29
+11:33:19.842,vprintf,87: Stack 3
+	file:	D:\epsych\CarasLab\Custom_epsych_functions\Modules\Runtime_Modules\cl_UpdateRuntime.m
+	name:	cl_UpdateRuntime
+	line:	66
+11:33:19.844,vprintf,87: Stack 4
+	file:	D:\epsych\CarasLab\Custom_epsych_functions\TimerFcns\cl_TimerFcn_Start.m
+	name:	cl_TimerFcn_Start
+	line:	219
+11:33:19.845,vprintf,87: Stack 5
+	file:	D:\epsych\runtime\psychophysics\ep_RunExpt.m
+	name:	PsychTimerStart
+	line:	413
+11:33:19.845,vprintf,87: Stack 6
+	file:	C:\Program Files\MATLAB\R2019b\toolbox\matlab\iofun\@timer\timercb.m
+	name:	timercb
+	line:	34
+11:33:19.846,vprintf,87: Stack 7
+	file:	C:\Program Files\MATLAB\R2019b\toolbox\matlab\iofun\timercb.m
+	name:	timercb
+	line:	24
+11:33:19.846,vprintf,87: Stack 8
+	file:	C:\Program Files\MATLAB\R2019b\toolbox\matlab\iofun\@timer\start.m
+	name:	start
+	line:	33
+11:33:19.847,vprintf,87: Stack 9
+	file:	D:\epsych\runtime\psychophysics\ep_RunExpt.m
+	name:	ExptDispatch
+	line:	361
+11:33:19.847,vprintf,87: Stack 10
+	file:	C:\Program Files\MATLAB\R2019b\toolbox\matlab\guide\gui_mainfcn.m
+	name:	gui_mainfcn
+	line:	95
+11:33:19.847,vprintf,87: Stack 11
+	file:	D:\epsych\runtime\psychophysics\ep_RunExpt.m
+	name:	ep_RunExpt
+	line:	30
+11:35:08.553,ExptDispatch,104:  1. 'CarasLabTest'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_behavior.prot');">Aversive_behavior</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
+11:35:08.678,ExptDispatch,244: Experiment is not using OpenEx
+11:35:11.287,vprintf,84: MATLAB:needMoreRhsOutputs
+11:35:11.303,vprintf,85: Insufficient number of outputs from right hand side of equal sign to satisfy assignment.
+11:35:11.303,vprintf,87: Stack 1
+	file:	D:\epsych\CarasLab\Custom_epsych_functions\Modules\Generic_Modules\cl_CreateLogFile.m
+	name:	cl_CreateLogFile
+	line:	24
+11:35:11.303,vprintf,87: Stack 2
+	file:	D:\epsych\CarasLab\Custom_epsych_functions\TrialFcns\cl_TrialFcn.m
+	name:	cl_TrialFcn
+	line:	29
+11:35:11.303,vprintf,87: Stack 3
+	file:	D:\epsych\CarasLab\Custom_epsych_functions\Modules\Runtime_Modules\cl_UpdateRuntime.m
+	name:	cl_UpdateRuntime
+	line:	66
+11:35:11.303,vprintf,87: Stack 4
+	file:	D:\epsych\CarasLab\Custom_epsych_functions\TimerFcns\cl_TimerFcn_Start.m
+	name:	cl_TimerFcn_Start
+	line:	219
+11:35:11.303,vprintf,87: Stack 5
+	file:	D:\epsych\runtime\psychophysics\ep_RunExpt.m
+	name:	PsychTimerStart
+	line:	413
+11:35:11.303,vprintf,87: Stack 6
+	file:	C:\Program Files\MATLAB\R2019b\toolbox\matlab\iofun\@timer\timercb.m
+	name:	timercb
+	line:	34
+11:35:11.303,vprintf,87: Stack 7
+	file:	C:\Program Files\MATLAB\R2019b\toolbox\matlab\iofun\timercb.m
+	name:	timercb
+	line:	24
+11:35:11.303,vprintf,87: Stack 8
+	file:	C:\Program Files\MATLAB\R2019b\toolbox\matlab\iofun\@timer\start.m
+	name:	start
+	line:	33
+11:35:11.303,vprintf,87: Stack 9
+	file:	D:\epsych\runtime\psychophysics\ep_RunExpt.m
+	name:	ExptDispatch
+	line:	361
+11:35:11.303,vprintf,87: Stack 10
+	file:	C:\Program Files\MATLAB\R2019b\toolbox\matlab\guide\gui_mainfcn.m
+	name:	gui_mainfcn
+	line:	95
+11:35:11.303,vprintf,87: Stack 11
+	file:	D:\epsych\runtime\psychophysics\ep_RunExpt.m
+	name:	ep_RunExpt
+	line:	30
+12:04:54.452,SaveConfig,693: Configuration saved as: 'D:\config_files\Aversive-Behavior-Test.config'
+
+12:04:55.911,ExptDispatch,104:  1. 'CarasLabTest'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_behavior.prot');">Aversive_behavior</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
+12:04:56.002,ExptDispatch,244: Experiment is not using OpenEx
