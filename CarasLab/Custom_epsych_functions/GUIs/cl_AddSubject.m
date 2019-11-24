@@ -1,12 +1,11 @@
 function varargout = cl_AddSubject(varargin)
 %S = cl_AddSubject.m
 %
-%Custom function for adding a new subject for a Caras Lab experiment.
+%Custom function for adding a new subject for a Sanes Lab experiment.
 %
 %Created by ML Caras Jun 9 2015
-%Last Modified by GUIDE v2.5 17-Oct-2019 20:59:55
-%Updated by ML Caras Oct 17 2019
-
+%
+% Last Modified by GUIDE v2.5 24-Nov-2019 10:17:00
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -36,10 +35,10 @@ h.output = hObj;
 set(h.box_id,'String',1:16,'Value',1);
 
 %Set Condition
-condition = getpref('PSYCH','subject_condition','< ADD CONDITION >');
+condition = getpref('ep_AddSubject_SanesLab','condition','< ADD CONDITION >');
 condition = cellstr(condition);
 condition = cellfun(@(a) (a(:)'),condition,'uniformoutput',false);
-usercond = cellstr(getpref('PSYCH','user_conditions',''));
+usercond = cellstr(getpref('ep_AddSubject_SanesLab','user_conditions',''));
 sval = find(ismember(condition,usercond),1);
 if isempty(sval), sval = 1; end
 set(h.condition,'String',condition,'Value',sval);
@@ -61,7 +60,7 @@ if isvector(boxids)
 end
 
 guidata(hObj, h);
-uiwait(h.cl_AddSubject);
+uiwait(h.ep_AddSubject_SanesLab);
 
 
 % --- Outputs from this function are returned to the command line.
@@ -70,7 +69,7 @@ varargout{1} = [];
 if ~ishandle(hObj), return; end
 h = guidata(hObj);
 if isfield(h,'S'), varargout{1} = h.S; end
-close(h.cl_AddSubject);
+close(h.ep_AddSubject_SanesLab);
 
 
 function PopulateFields(S,h)
@@ -118,7 +117,7 @@ function condition_Callback(hObj)
 s = get_string(hObj);
 
 if ~strcmp(s,'< ADD CONDITION >')
-    setpref('PSYCH','user_conditions',s);
+    setpref('ep_AddSubject_SanesLab','user_conditions',s);
     return
 end
 
@@ -141,7 +140,7 @@ set(hObj,'String',alls,'Value',1);
 
 news = char(news);
 
-setpref('PSYCH',{'subject_condition','user_conditions'},{alls,news})
+setpref('ep_AddSubject_SanesLab',{'condition','user_conditions'},{alls,news})
 
 fprintf('A new condition was added to the list: %s\n',news)
 
@@ -163,7 +162,7 @@ S.Notes   = get(h.notes,'String');
 function Done(h) %#ok<DEFNU>
 h.S = CollectSubjectInfo(h);
 
-hObj = h.cl_AddSubject;
+hObj = h.ep_AddSubject_SanesLab;
 
 guidata(hObj,h);
 
@@ -173,4 +172,27 @@ if isequal(get(hObj, 'waitstatus'), 'waiting')
 else
     % The GUI is no longer waiting, just close it
     delete(hObj);
+end
+
+
+
+function recdepth_Callback(hObject, eventdata, handles)
+% hObject    handle to recdepth (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of recdepth as text
+%        str2double(get(hObject,'String')) returns contents of recdepth as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function recdepth_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to recdepth (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
 end
