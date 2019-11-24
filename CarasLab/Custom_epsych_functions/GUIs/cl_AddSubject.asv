@@ -1,7 +1,7 @@
 function varargout = cl_AddSubject(varargin)
 %S = cl_AddSubject.m
 %
-%Custom function for adding a new subject for a Caras Lab experiment.
+%Custom function for adding a new subject for a Sanes Lab experiment.
 %
 %Created by ML Caras Jun 9 2015
 %
@@ -60,7 +60,7 @@ if isvector(boxids)
 end
 
 guidata(hObj, h);
-uiwait(h.cl_AddSubject);
+uiwait(h.c_AddSubject_SanesLab);
 
 
 % --- Outputs from this function are returned to the command line.
@@ -69,7 +69,7 @@ varargout{1} = [];
 if ~ishandle(hObj), return; end
 h = guidata(hObj);
 if isfield(h,'S'), varargout{1} = h.S; end
-close(h.cl_AddSubject);
+close(h.ep_AddSubject_SanesLab);
 
 
 function PopulateFields(S,h)
@@ -117,7 +117,7 @@ function condition_Callback(hObj)
 s = get_string(hObj);
 
 if ~strcmp(s,'< ADD CONDITION >')
-    setpref('cl_AddSubject','user_conditions',s);
+    setpref('ep_AddSubject_SanesLab','user_conditions',s);
     return
 end
 
@@ -140,7 +140,7 @@ set(hObj,'String',alls,'Value',1);
 
 news = char(news);
 
-setpref('cl_AddSubject',{'condition','user_conditions'},{alls,news})
+setpref('ep_AddSubject_SanesLab',{'condition','user_conditions'},{alls,news})
 
 fprintf('A new condition was added to the list: %s\n',news)
 
@@ -162,7 +162,7 @@ S.Notes   = get(h.notes,'String');
 function Done(h) %#ok<DEFNU>
 h.S = CollectSubjectInfo(h);
 
-hObj = h.cl_AddSubject;
+hObj = h.ep_AddSubject_SanesLab;
 
 guidata(hObj,h);
 
