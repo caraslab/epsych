@@ -1,0 +1,4 @@
+12:01:05.802,ExptDispatch,104:  1. 'TEST'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_behavior.prot');">Aversive_behavior</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
+12:01:05.990,ExptDispatch,244: Experiment is not using OpenEx
+12:08:59.478,ExptDispatch,104:  1. 'TEST'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_behavior.prot');">Aversive_behavior</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
+12:08:59.572,ExptDispatch,244: Experiment is not using OpenEx
