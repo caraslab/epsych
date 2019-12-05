@@ -92,3 +92,6 @@ There was an error in custom trial select function "cl_TrialFcn_BasicCharacteriz
 	line:	25
 16:00:15.776,control_record_Callback,688: Recording session started at 16:00:15
 16:04:40.567,control_record_Callback,688: Recording session started at 16:04:40
+16:21:54.060,control_record_Callback,705: Recording session started at 16:21:54
+16:27:29.082,control_record_Callback,710: Recording session started at 16:27:29
+16:28:02.344,control_record_Callback,710: Recording session started at 16:28:02
