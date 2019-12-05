@@ -45,6 +45,6 @@ if TRIALS.tidx == 1
     setpref('PSYCH','CalDir',pn);
     
     %Launch basic characterization gui
-    cl_BasicCharacterization
+    cl_basic_characterization
     
 end

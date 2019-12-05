@@ -1,0 +1,94 @@
+11:16:32.637,ExptDispatch,104:  1. 'ephys'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_ephys.prot');">Aversive_ephys</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
+11:16:32.796,ExptDispatch,130: Experiment will be run with Synapse
+11:16:37.465,ExptDispatch,340: System set to 'Run'
+11:40:02.038,ExptDispatch,104:  1. 'CarasLabTest'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_ephys.prot');">Aversive_ephys</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
+11:40:02.144,ExptDispatch,130: Experiment will be run with Synapse
+11:40:06.495,ExptDispatch,340: System set to 'Run'
+12:39:26.588,ExptDispatch,104:  1. 'TEST'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_behavior.prot');">Aversive_behavior</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
+12:39:26.666,ExptDispatch,244: Experiment is not using OpenEx
+13:57:45.535,ExptDispatch,104:  1. 'TEST'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_behavior.prot');">Aversive_behavior</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
+13:57:45.629,ExptDispatch,244: Experiment is not using OpenEx
+14:50:43.866,ExptDispatch,104:  1. '1234'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_ephys.prot');">Aversive_ephys</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
+14:50:43.976,ExptDispatch,130: Experiment will be run with Synapse
+14:51:44.752,ExptDispatch,104:  1. 'CarasLabTest'	Protocol: <a href="matlab: ep_ExperimentDesign('D:\epsych\CarasLab\SettingsFiles\Protocols\Aversive_ephys.prot');">Aversive_ephys</a>(<a href="matlab: !explorer D:\epsych\CarasLab\SettingsFiles\Protocols">D:\epsych\CarasLab\SettingsFiles\Protocols</a>)
+14:51:44.861,ExptDispatch,130: Experiment will be run with Synapse
+14:51:49.282,ExptDispatch,340: System set to 'Run'
+15:44:03.662,control_record_Callback,601: 
+**************************************************
+There was an error in custom trial select function "TrialFcn_BasicCharacterization_SanesLab"
+**************************************************
+
+15:44:03.693,vprintf,84: MATLAB:UndefinedFunction
+15:44:03.693,vprintf,85: Undefined function 'TrialFcn_BasicCharacterization_SanesLab' for input arguments of type 'struct'.
+15:44:03.709,vprintf,87: Stack 1
+	file:	D:\epsych\runtime\ephys\ep_EPhys.m
+	name:	control_record_Callback
+	line:	599
+15:44:03.724,vprintf,87: Stack 2
+	file:	C:\Program Files\MATLAB\R2019b\toolbox\matlab\guide\gui_mainfcn.m
+	name:	gui_mainfcn
+	line:	95
+15:44:03.724,vprintf,87: Stack 3
+	file:	D:\epsych\runtime\ephys\ep_EPhys.m
+	name:	ep_EPhys
+	line:	25
+15:55:05.047,control_record_Callback,601: 
+**************************************************
+There was an error in custom trial select function "cl_TrialFcn_BasicCharacterization"
+**************************************************
+
+15:55:05.047,vprintf,84: MATLAB:UndefinedFunction
+15:55:05.047,vprintf,85: Unrecognized function or variable 'cl_BasicCharacterization'.
+15:55:05.047,vprintf,87: Stack 1
+	file:	D:\epsych\CarasLab\Custom_epsych_functions\TrialFcns\cl_TrialFcn_BasicCharacterization.m
+	name:	cl_TrialFcn_BasicCharacterization
+	line:	48
+15:55:05.047,vprintf,87: Stack 2
+	file:	D:\epsych\runtime\ephys\ep_EPhys.m
+	name:	control_record_Callback
+	line:	599
+15:55:05.047,vprintf,87: Stack 3
+	file:	C:\Program Files\MATLAB\R2019b\toolbox\matlab\guide\gui_mainfcn.m
+	name:	gui_mainfcn
+	line:	95
+15:55:05.062,vprintf,87: Stack 4
+	file:	D:\epsych\runtime\ephys\ep_EPhys.m
+	name:	ep_EPhys
+	line:	25
+15:57:33.075,control_record_Callback,601: 
+**************************************************
+There was an error in custom trial select function "cl_TrialFcn_BasicCharacterization"
+**************************************************
+
+15:57:33.075,vprintf,84: MATLAB:UndefinedFunction
+15:57:33.075,vprintf,85: Undefined function 'findModuleIndex_SanesLab' for input arguments of type 'struct'.
+15:57:33.075,vprintf,87: Stack 1
+	file:	D:\epsych\CarasLab\Custom_epsych_functions\GUIs\cl_basic_characterization.m
+	name:	cl_basic_characterization_OpeningFcn
+	line:	57
+15:57:33.075,vprintf,87: Stack 2
+	file:	C:\Program Files\MATLAB\R2019b\toolbox\matlab\guide\gui_mainfcn.m
+	name:	gui_mainfcn
+	line:	220
+15:57:33.091,vprintf,87: Stack 3
+	file:	D:\epsych\CarasLab\Custom_epsych_functions\GUIs\cl_basic_characterization.m
+	name:	cl_basic_characterization
+	line:	42
+15:57:33.091,vprintf,87: Stack 4
+	file:	D:\epsych\CarasLab\Custom_epsych_functions\TrialFcns\cl_TrialFcn_BasicCharacterization.m
+	name:	cl_TrialFcn_BasicCharacterization
+	line:	48
+15:57:33.091,vprintf,87: Stack 5
+	file:	D:\epsych\runtime\ephys\ep_EPhys.m
+	name:	control_record_Callback
+	line:	599
+15:57:33.091,vprintf,87: Stack 6
+	file:	C:\Program Files\MATLAB\R2019b\toolbox\matlab\guide\gui_mainfcn.m
+	name:	gui_mainfcn
+	line:	95
+15:57:33.091,vprintf,87: Stack 7
+	file:	D:\epsych\runtime\ephys\ep_EPhys.m
+	name:	ep_EPhys
+	line:	25
+16:00:15.776,control_record_Callback,688: Recording session started at 16:00:15
+16:04:40.567,control_record_Callback,688: Recording session started at 16:04:40

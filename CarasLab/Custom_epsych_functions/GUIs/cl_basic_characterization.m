@@ -54,10 +54,10 @@ handles.output = hObject;
 %Store device info
 RUNTIME.TDT = TDT_GetDeviceInfo(G_DA);
 RUNTIME.UseOpenEx = 1;
-handles = findModuleIndex_SanesLab('RZ6',handles);
+handles = cl_FindModuleIndex('RZ6',handles);
 
 %Initialize physiology
-[handles,G_DA] = initializePhysiology_SanesLab(handles,G_DA);
+[handles,G_DA] = cl_InitializePhysiology(handles,G_DA);
 
 
 
@@ -177,9 +177,9 @@ function ReferencePhys_Callback(~, ~, handles) %#ok<*DEFNU>
 global G_DA SYN_STATUS SYN
 
 if ~isempty(SYN_STATUS)
-    G_DA = ReferencePhys_SanesLab(handles,G_DA);
+    G_DA = cl_ReferencePhysiology(handles,G_DA);
 elseif isempty(SYN_STATUS)
-    SYN = ReferencePhys_SanesLab(handles,SYN);
+    SYN = cl_ReferencePhysiology(handles,SYN);
 end
 
 
@@ -204,7 +204,7 @@ guidata(hObject,handles)
 function ResetLFP_Callback(hObject, ~, handles)
 global G_DA
 
-h = findModuleIndex_SanesLab('RZ5', handles);
+h = cl_FindModuleIndex('RZ5', handles);
 
 %Send trigger to reset averaging
 G_DA.SetTargetVal([h.module,'.ResetAvg'],1);
@@ -223,7 +223,7 @@ guidata(hObject,handles)
 function nAvg_Callback(hObject, ~, handles)
 global G_DA
 
-h = findModuleIndex_SanesLab('RZ5', handles);
+h = cl_FindModuleIndex('RZ5', handles);
 
 val = get(hObject,'Value');
 str = get(hObject,'String');
