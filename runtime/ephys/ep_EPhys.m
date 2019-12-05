@@ -465,7 +465,29 @@ if isempty(SYN_STATUS)
 else
     %Instantiate OpenDeveloper ActiveX control and select active tank
     if ~isa(G_DA,'COM.TDevAcc_X'), G_DA = TDT_SetupDA; end
-    G_DA.SetTankName(h.TDT.tank); pause(0.5);
+    
+    %Note: When run in Matlab 2019b, the command below gave an error
+    %on the first time it was called. No idea why- adding
+    %a pause of a full second to let RUNTIME initialize didn't solve it.
+    %Therefore, we'll embed the command in a try/catch and while statement,
+    %so it ends up being called multiple times until it works. Most of the
+    %time, the second call is sufficient to run it, but ocassionally, again for
+    %unknown reasons, additional calls are needed.
+    trying = 1;
+    badcount = 0;
+    
+    while trying == 1
+        try
+            G_DA.SetTankName(h.TDT.tank); pause(0.5);
+            trying = 0;
+        catch
+            badcount = badcount + 1;
+            if badcount > 10
+             error('MATLAB is having trouble connecting to TDT. This is a known bug that occurs sporadically. Restart MATLAB.')
+            end
+            
+        end
+    end
     
     
     %Prepare OpenWorkbench

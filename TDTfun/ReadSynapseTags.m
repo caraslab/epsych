@@ -14,14 +14,30 @@ warning('off','MATLAB:strrep:InvalidInputType')
 
 %Find out how many modules there are.
 %Note: When run in Matlab 2019b, the command below gave an error 
-%on the first time it was called, but not the second. No idea why- adding
+%on the first time it was called. No idea why- adding
 %a pause of a full second to let RUNTIME initialize didn't solve it.
-%Therefore, we'll embed the command in a try/catch statement, so it ends up
-%running the second time around.
-try
-    nMods = numel(RUNTIME.TDT.name);
-catch
-    nMods = numel(RUNTIME.TDT.name);
+%Therefore, we'll embed the command in a try/catch and while statement,
+%so it ends up being called multiple times until it works. Most of the
+%time, the second call is sufficient to run it, but ocassionally, again for
+%unknown reasons, additional calls are needed.
+trying = 1;
+badcount = 0;
+
+while trying == 1
+    
+    try
+        nMods = numel(RUNTIME.TDT.name);
+        trying = 0;
+    catch
+        
+        %Sometimes, for no reason, matlab still can't execute the function.
+        %In this case, let the error be thrown.
+        badcount = badcount + 1;
+        if badcount > 10
+        error('MATLAB is having trouble connecting to TDT. This is a known bug that occurs sporadically. Restart MATLAB.')
+        end
+    end
+    
 end
 
 for i = 1:nMods
