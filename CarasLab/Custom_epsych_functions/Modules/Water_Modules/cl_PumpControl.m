@@ -11,6 +11,7 @@ function varargout = cl_PumpControl
 %
 % Written by DJ Stolzberg 2014
 % Updated by ML Caras 2017
+%Updated by ML Caras Dec 2019
 
 
 %Close and delete all open serial ports
@@ -21,7 +22,7 @@ if ~isempty(out)
 end
 
 %Create a serial connection to the pump
-pump = serial('com1','BaudRate',19200,'DataBits',8,'StopBits',1,'TimerPeriod',0.1);
+pump = serial('com6','BaudRate',19200,'DataBits',8,'StopBits',1,'TimerPeriod',0.1);
 fopen(pump);
 
 warning('off','MATLAB:serial:fscanf:unsuccessfulRead')

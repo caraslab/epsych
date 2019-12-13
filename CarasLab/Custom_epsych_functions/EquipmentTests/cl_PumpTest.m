@@ -2,7 +2,7 @@
 clear all;
 clc
 
-pump = serial('com1','BaudRate',19200,'DataBits',8,'StopBits',1,'TimerPeriod',0.1);
+pump = serial('com6','BaudRate',19200,'DataBits',8,'StopBits',1,'TimerPeriod',0.1);
 fopen(pump);
 
 warning('off','MATLAB:serial:fscanf:unsuccessfulRead')
@@ -21,8 +21,9 @@ fscanf(pump);
 fprintf(pump,'DIA\n'); fscanf(pump,'%s',4); % discard junk 4 bytes
 D = fscanf(pump,'%f')
 
-
-
+%% 
+fprintf(pump,'RAT%s\n','MM'); fscanf(pump,'%s',4);
+rate = fscanf(pump,'%f')
 
 %% TRIGGER TYPE (LE)
 
