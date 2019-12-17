@@ -13,6 +13,7 @@ function handles = cl_InitializeCalibration(handles)
 %Written by ML Caras 8.10.2016. 
 %Updated by ML Caras 4.11.2018
 %Updated by ML Caras 10.19.2019
+%Updated by ML Caras 12.17.2019
 
 global CONFIG RUNTIME AX SYN_STATUS
 
@@ -69,6 +70,15 @@ while calcheck == 0
             calpath = getpref('PSYCH','CalDir',defaultpath);
             
             %Prompt user to select file
+           
+            %Note: The line below avoids a bug first observed using MATLAB 
+            %2019b on a 64 bit Windows Platform, where MATLAB will freeze
+            %and become unresponsive if the user clicks outside the
+            %dialogue box before selecting a calibration file. The more
+            %common fix of adding a drawnow; pause(0.10); line after the
+            %dialog box command did not fix it.
+            com.mathworks.mwswing.MJFileChooserPerPlatform.setUseSwingDialog(1);
+            
             [fn,pn,fidx] = uigetfile([calpath,'\*.cal'],'Select speaker calibration file');
             calfile = fullfile(pn,fn);
             
