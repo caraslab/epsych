@@ -14,6 +14,7 @@ function handles = cl_PopulateLoadedTrials(handles)
 %Written by ML Caras 7.24.2016
 %Updated by JDY & NP 10.9.2018
 %Updated by ML Caras 10.19.2019
+%Updated by ML Caras 1.07.2020 (Java compatability with 2018b)
 
 global RUNTIME ROVED_PARAMS
 
@@ -107,15 +108,8 @@ end
 set(handles.TrialFilter,'Data',D)
 set(handles.ReminderParameters,'Data',D_remind);
 set(handles.TrialFilter,'ColumnFormat',formats);
-set(handles.TrialFilter,'ColumnEditable',editable)
+set(handles.TrialFilter,'ColumnEditable',editable);
 
-%Get java handle to the uitable object and the scrollbar (for resetting
-%later. We do this once, and only once, here because findjobj.m is very
-%slow and calling it during runtime can produce a substantial lag.)
-warning('off','MATLAB:hg:uicontrol:ParameterValuesMustBeValid') 
-jTable = findjobj(handles.TrialFilter);
-handles.jScrollPane = jTable.getComponent(0);
-warning('on','MATLAB:hg:uicontrol:ParameterValuesMustBeValid') 
 
 
 

@@ -196,7 +196,28 @@ function varargout = cl_AversiveDetection_OutputFcn(hObject, ~, handles)
 % Get default command line output from handles structure
 varargout{1} = handles.output;
 
+%The trial table contains a checklist and scrollbar to allow users to
+%select which trials they want to deliver. The scrollbar automatically
+%jumps back to the top of the window after each check, which is annoying
+%when making lots of selections. There is a java workaround, the first step
+%of which is implemented below. Note that in the original version of this
+%workaround, this first step was implemented before the GUI became visible. 
+%This worked fine in MATLB 2012ab, 2014ab, 2016ab and 2019b. For some
+%unknown reason, it would not work properly in 2018b-- the GUI had to be
+%visible first before we could excute the following lines of code. If we
+%could use 2019b without issue, this wouldn't matter. However, 2018b is
+%full of bugs that make the program alarmingly slow, or even non-functional,
+%when also recording physiology. 2018b is much more stable. 
+%Therefore, we've moved this initial step here, after the GUI is visible,
+%but before the timer has started.
 
+%Get java handle to the uitable object and the scrollbar (for resetting
+%later. We do this once, and only once, here because findjobj.m is very
+%slow and calling it during runtime can produce a substantial lag.)
+warning('off','MATLAB:hg:uicontrol:ParameterValuesMustBeValid') 
+jTable = findjobj(handles.TrialFilter);
+handles.jScrollPane = jTable.getComponent(0);
+warning('on','MATLAB:hg:uicontrol:ParameterValuesMustBeValid') 
 
 % Create new timer for RPvds control of experiment
 T = CreateTimer(hObject);
@@ -204,6 +225,8 @@ T = CreateTimer(hObject);
 %Start timer
 start(T);
 
+%Update handles structure
+guidata(hObject, handles);
 
 
 %----------------------------------------------------------------------

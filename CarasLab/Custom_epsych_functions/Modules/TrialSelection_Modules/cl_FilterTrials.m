@@ -13,7 +13,8 @@ function [hObject,handles] = cl_FilterTrials(hObject, eventdata, handles)
 %
 %Updated by ML Caras 8.17.2016
 %Updated by JDY and NP 2018
-%Updated by ML Caras 10.19.2019
+%Updated by ML Caras 10.19.2019 (updated for use with caras lab code and
+%later versions of matlab, including 2019b)
 
 global TRIAL_STATUS
 
@@ -148,7 +149,7 @@ switch r
         %Update the GUI object
         set(hObject,'Data',table_data);
         set(hObject,'ForegroundColor',[1 0 0]);
-        
+         
         %Render graphic now
         drawnow; 
         
