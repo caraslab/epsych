@@ -216,8 +216,7 @@ varargout{1} = handles.output;
 %slow and calling it during runtime can produce a substantial lag.)
 %It's worth making sure that the GUI figure is visible and that the java
 %components are actually rendered before running the code. In rare cases,
-%MATLAB will try to execute the following lines BEFORE the GUI is made
-%visible.
+%M
 hObject.Visible = 'on';
 
 warning('off','MATLAB:hg:uicontrol:ParameterValuesMustBeValid')
