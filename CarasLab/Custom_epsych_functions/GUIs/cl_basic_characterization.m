@@ -46,13 +46,15 @@ end
 
 %OPENING FUNCTION
 function cl_basic_characterization_OpeningFcn(hObject, ~, handles, varargin)
-global G_DA G_COMPILED RUNTIME
+global G_DA G_COMPILED RUNTIME SYN
 
 
 handles.output = hObject;
 
 %Store device info
-RUNTIME.TDT = TDT_GetDeviceInfo(G_DA);
+%RUNTIME.TDT = TDT_GetDeviceInfo(G_DA);
+RUNTIME.TDT = TDT_GetDeviceInfo_v2(SYN);
+
 RUNTIME.UseOpenEx = 1;
 handles = cl_FindModuleIndex('RZ6',handles);
 

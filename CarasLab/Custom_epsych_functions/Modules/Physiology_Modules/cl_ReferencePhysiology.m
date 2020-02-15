@@ -154,7 +154,7 @@ header = 'Select bad channels. Hold Cntrl to select multiple channels.';
 
 bad_channels = listdlg('ListString',channelList,'InitialValue',8,...
     'Name','Channels','PromptString',header,...
-    'SelectionMode','multiple','ListSize',[300,300]) %#ok<NOPRT>
+    'SelectionMode','multiple','ListSize',[300,300]); 
 
 
 function WeightMatrix = createWeightMatrix(n,bad_channels)

@@ -17,22 +17,41 @@ function dinfo = TDT_GetDeviceInfo(DA,echo)
 % See also, TDT_SetupDA, ReadRPvdsTags
 % 
 % Daniel.Stolzberg@gmail.com 2014
+% Edited by ML Caras 02.06.2020
+
+ptime = 0.1;
 
 if nargin == 1, echo = true; end
 
 dinfo = [];
 i = 1;
+
+vprintf(0,'Collecting RPVds info...')
+
 while 1
+    pause(5)
     name = DA.GetDeviceName(i-1);
-    if isempty(name), break;   end
-    dinfo.name{i}   = name; %#ok<*AGROW>
+    pause(0.1)
+    if isempty(name)
+        break;   
+    end
+    dinfo.name{i} = name; %#ok<*AGROW>
+    
     dinfo.Module{i} = DevLUT(DA.GetDeviceType(name));
+    pause(ptime)
+    
     dinfo.status(i) = DA.GetDeviceStatus(name);
+    pause(ptime)
+    
     dinfo.RPfile{i} = DA.GetDeviceRCO(name);
+    pause(ptime)
+    
     if strcmp(dinfo.RPfile{i},'*.rco') % probably PA5
         dinfo.RPfile{i} = '';
     end
-    dinfo.Fs(i)     = DA.GetDeviceSF(name);
+    
+    dinfo.Fs(i) = DA.GetDeviceSF(name);
+    pause(ptime)
     
     
     if strcmp(dinfo.Module{i},'PA5')
@@ -45,8 +64,10 @@ while 1
         end
     end
     
-    i = i + 1;
+        i = i + 1;
 end
+
+vprintf(0,'RPVds info collected. Initializing...');
 
 
 function [tags,datatypes] = GetTags(DA,name)
@@ -62,7 +83,10 @@ for i = 1:length(dt)
     j = 0;
     while 1
         t = DA.GetNextTag(name,di(i),j==0);
-        if isempty(t), break; end
+        
+        if isempty(t)
+            break; 
+        end
         tags{k} = t;
         datatypes{k} = dn{i};
         j = j + 1; k = k + 1;

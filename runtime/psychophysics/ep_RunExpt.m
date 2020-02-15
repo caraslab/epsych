@@ -149,18 +149,11 @@ switch COMMAND
             AX = actxcontrol('TDevAcc.X','parent',ha);
             AX.ConnectServer('Local');
             
-            %Get Device Names, RCX files, and Sampling rates
-            RUNTIME.TDT = TDT_GetDeviceInfo(AX,false);
-            
-            %Overwrite tag names using Synapse API. The previous call
-            %(TDT_GetDeviceInfo) uses open developer activeX controls to
-            %read parameter tags. These controls do not fully capture all
-            %parameter tags embedded within epsych's custom macros. Older
-            %RPVds activeX will fully penetrate the macros, but these
-            %controls can't be used at the same time as Synapse. Luckily,
-            %the Synapse API fully penetrates the macros and reads all
-            %tags.
-             RUNTIME = ReadSynapseTags(SYN,RUNTIME);
+            %Get Device Names and Sampling rates
+            RUNTIME.TDT = TDT_GetDeviceInfo_v2(SYN);
+
+            %Get tag names using Synapse API
+            RUNTIME = ReadSynapseTags(SYN,RUNTIME);
             
             
             %Find the module that's running in legacy mode
@@ -195,62 +188,24 @@ switch COMMAND
             end
             
         %-------------------------------------------------    
-        %If Synapse is not running
+        %If Synapse is not running (behavior only)
         %-------------------------------------------------
         else
             
-            %-------------------------------------------------
-            %If protocol is designed for ephys
-            %-------------------------------------------------
-            if CONFIG(1).PROTOCOL.OPTIONS.UseOpenEx
-                vprintf(0,'Experiment is designed for use with OpenEx')
-                
-                
-                %Create an active X control that will interface with OpenEx
-                %and prompt user to select a tank. (Uses Open Developer)
-                [AX,TDT] = SetupDAexpt;
-                if isempty(AX) || ~isa(AX,'COM.TDevAcc_X'), return; end
-                
-                vprintf(0,'Server:\t''%s''\nTank:\t''%s''\n', ...
-                    TDT.server,TDT.tank)
-                
-                %Get Device Names, RCX files, and Sampling rates from OpenEx
-                RUNTIME.TDT = TDT_GetDeviceInfo(AX,false);
-                if isempty(RUNTIME.TDT)
-                    vprintf(0,1,'Unable to communicate with OpenEx.  Make certain the correct OpenEx file is open.')
-                    errordlg('Unable to communicate with OpenEx.  Make certain the correct OpenEx file is open.', ...
-                        'ep_RunExpt','modal')
-                end
-                
-                %Assign the server and tank names
-                RUNTIME.TDT.server = TDT.server;
-                RUNTIME.TDT.tank   = TDT.tank;
-                
-                
-                %Copy parameters to RUNTIME.TRIALS
-                for i = 1:length(CONFIG)
-                    C = CONFIG(i).PROTOCOL.COMPILED;
-                    RUNTIME.TRIALS(i).readparams    = C.readparams;
-                    RUNTIME.TRIALS(i).Mreadparams   = cellfun(@ModifyParamTag, ...
-                        RUNTIME.TRIALS(i).readparams,'UniformOutput',false);
-                    RUNTIME.TRIALS(i).writeparams   = C.writeparams;
-                    RUNTIME.TRIALS(i).randparams    = C.randparams;
-                end
+            %Note: as of Feb 2020, OpenEx is no longer supported. Only
+            %Synapse is supported for ephys data collection.
             
-            %-------------------------------------------------
-            %If the protocol is not designed for OpenEx
-            %-------------------------------------------------
-            else
-                vprintf(0,'Experiment is not using OpenEx')
-                
-                %Create an activeX control that can be used to control
-                %RPVds. (Does not Use Open Developer)
-                [AX,RUNTIME] = SetupRPexpt(CONFIG);
-                
-                if isempty(AX),
-                    return;
-                end
+            vprintf(0,'Experiment will not be run with Synapse')
+            
+            %Create an activeX control that can be used to control
+            %RPVds. (Does not Use Open Developer)
+            [AX,RUNTIME] = SetupRPexpt(CONFIG);
+            
+            if isempty(AX),
+                return;
             end
+            
+    
         end
         %-------------------------------------------------
         %-------------------------------------------------
@@ -288,7 +243,7 @@ switch COMMAND
         
         
         %Do stuff with parameter tags
-        RUNTIME.TDT.NumMods = length(RUNTIME.TDT.RPfile);
+        RUNTIME.TDT.NumMods = length(RUNTIME.TDT.Module);
         RUNTIME.TDT.triggers = cell(1,RUNTIME.TDT.NumMods);
         
         %For each TDT module...
@@ -332,9 +287,9 @@ switch COMMAND
             
             switch COMMAND
                 case 'Run',
-                    SYN.setModeStr('Record')
+                    SYN.setModeStr('Record');
                 case 'Preview'
-                    SYN.setModeStr('Preview')
+                    SYN.setModeStr('Preview');
             end
             
             vprintf(0,'System set to ''%s''',COMMAND)

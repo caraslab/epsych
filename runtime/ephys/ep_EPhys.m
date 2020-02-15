@@ -402,169 +402,69 @@ F = fieldnames(G_FLAGS)';
 
 
 
-%-------------------------------------
-%If we're running Synapse
-%-------------------------------------
-if isempty(SYN_STATUS)
-    
-    %Connect to locally running Synapse
-    SYN = SynapseAPI();
-    
-    %Switch Synapse into Standby Mode. Important to do this before
-    %creating an open developer active X control to talk to any
-    %hardware running in legacy mode.
-    SYN.setModeStr('Standby');
-    
-    %Create a hidden figure for active X controls
-    %(for operation in legacy mode)
-    ha = findobj('Type','figure','-and','Name','ODevFig');
-    if isempty(ha)
-        ha = figure('Visible','off','Name','ODevFig');
-    end
-    
-    %Create open developer active X controls and connect to server
-    %(for operation in legacy mode)
-    G_DA = actxcontrol('TDevAcc.X','parent',ha);
-    G_DA.ConnectServer('Local');
-    
-    %Get Device Names, RCX files, and Sampling rates
-    RUNTIME.TDT = TDT_GetDeviceInfo(G_DA);
-    
-    %Overwrite tag names using Synapse API. The previous call
-    %(TDT_GetDeviceInfo) uses open developer activeX controls to
-    %read parameter tags. These controls do not fully capture all
-    %parameter tags embedded within epsych's custom macros. Older
-    %RPVds activeX will fully penetrate the macros, but these
-    %controls can't be used at the same time as Synapse. Luckily,
-    %the Synapse API fully penetrates the macros and reads all
-    %tags.
-    [~,dinfo] = ReadSynapseTags(SYN,RUNTIME);
-    
-    
-    %Remove tags from RUNTIME.TDT structure
-    RUNTIME.TDT = rmfield(RUNTIME.TDT,{'tags','datatypes'});
-    
-    %Append tags from dinfo
-    for i = 1:numel(dinfo)
-        RUNTIME.TDT.devinfo(i) = dinfo(i);
-    end
-    
-    %Rename back to dinfo
-    dinfo = RUNTIME.TDT;
-    
-    
-    if isempty(dinfo)
-        vprintf(0,1,'ep_EPhys|dinfo is empty. Cannot read device info. You may need to restart Matlab and TDT software & hardware.')
-        SYN.setModeStr('Idle'); pause(0.5); % Idle
-        error('ep_EPhys|dinfo is empty. Cannot read device info. You may need to restart Matlab and TDT software & hardware.')
-    end
-    
-%-------------------------------------
-%If we're running OpenEx
-%-------------------------------------
-else
-    %Instantiate OpenDeveloper ActiveX control and select active tank
-    if ~isa(G_DA,'COM.TDevAcc_X'), G_DA = TDT_SetupDA; end
-    
-    %Note: When run in Matlab 2019b, the command below gave an error
-    %on the first time it was called. No idea why- adding
-    %a pause of a full second to let RUNTIME initialize didn't solve it.
-    %Therefore, we'll embed the command in a try/catch and while statement,
-    %so it ends up being called multiple times until it works. Most of the
-    %time, the second call is sufficient to run it, but ocassionally, again for
-    %unknown reasons, additional calls are needed.
-    trying = 1;
-    badcount = 0;
-    
-    while trying == 1
-        try
-            G_DA.SetTankName(h.TDT.tank); pause(0.5);
-            trying = 0;
-        catch
-            badcount = badcount + 1;
-            if badcount > 10
-             error('MATLAB is having trouble connecting to TDT. This is a known bug that occurs sporadically. Restart MATLAB.')
-            end
-            
-        end
-    end
-    
-    
-    %Prepare OpenWorkbench
-    vprintf(2,'Setting System Mode to ''Idle'' (0)')
-    G_DA.SetSysMode(0);
-    timeout(10);
-    to = false;
-    while G_DA.GetSysMode~=0
-        pause(0.1);
-        to = timeout;
-        if to, break; end
-    end % Idle
-    if to, vprintf(0,1,'Unable to Set System Mode to ''Idle'' (0)'); end
-    
-    vprintf(2,'Setting System Mode to ''Standby'' (1)')
-    G_DA.SetSysMode(1);
-    timeout(10);
-    while G_DA.GetSysMode~=1
-        pause(0.1);
-        to = timeout;
-        if to, break; end
-    end % Standby
-    if to, vprintf(0,1,'Unable to Set System Mode to ''Standby'' (1)'); end
-    
-    
-    
-    %Check tank name
-    t = G_DA.GetTankName;
-    vprintf(2,'Current tank name: %s',t);
-    if ~strcmp(t,h.TDT.tank)
-        vprintf(0,1,'Incorrect tank!  %s ~= %s',t,h.TDT.tank)
-        error('Incorrect tank!  %s ~= %s',t,h.TDT.tank)
-    end
-    
-    
-    
-    
-    %Find modules with required parameters
-    dinfo = TDT_GetDeviceInfo(G_DA);
-    if isempty(dinfo)
-        vprintf(0,1,'ep_EPhys|dinfo is empty. Cannot read device info. You may need to restart Matlab and TDT software & hardware.')
-        G_DA.SetSysMode(0); pause(0.5); % Idle
-        error('ep_EPhys|dinfo is empty. Cannot read device info. You may need to restart Matlab and TDT software & hardware.')
-    end
-    
+%Connect to locally running Synapse
+SYN = SynapseAPI();
+
+%Switch Synapse into Standby Mode. Important to do this before
+%creating an open developer active X control to talk to any
+%hardware running in legacy mode.
+SYN.setModeStr('Standby');
+
+%Create a hidden figure for active X controls
+%(for operation in legacy mode)
+ha = findobj('Type','figure','-and','Name','ODevFig');
+if isempty(ha)
+    ha = figure('Visible','off','Name','ODevFig');
 end
+
+%Create open developer active X controls and connect to server
+%(for operation in legacy mode)
+G_DA = actxcontrol('TDevAcc.X','parent',ha);
+G_DA.ConnectServer('Local');
+
+%Get Device Names and Sampling rates
+RUNTIME.TDT = TDT_GetDeviceInfo_v2(SYN);
+
+%Overwrite tag names using Synapse API. The previous call
+%(TDT_GetDeviceInfo) uses open developer activeX controls to
+%read parameter tags. These controls do not fully capture all
+%parameter tags embedded within epsych's custom macros. Older
+%RPVds activeX will fully penetrate the macros, but these
+%controls can't be used at the same time as Synapse. Luckily,
+%the Synapse API fully penetrates the macros and reads all
+%tags.
+[~,dinfo] = ReadSynapseTags(SYN,RUNTIME);
+
+
+%Append tags from dinfo
+for i = 1:numel(dinfo)
+    RUNTIME.TDT.devinfo(i) = dinfo(i);
+end
+
+%Rename back to dinfo
+dinfo = RUNTIME.TDT;
+
+
+if isempty(dinfo)
+    vprintf(0,1,'ep_EPhys|dinfo is empty. Cannot read device info. You may need to restart Matlab and TDT software & hardware.')
+    SYN.setModeStr('Idle'); pause(0.5); % Idle
+    error('ep_EPhys|dinfo is empty. Cannot read device info. You may need to restart Matlab and TDT software & hardware.')
+end
+
 
 
 
 %For each module...
 for i = 1:length(dinfo.name)
     
-    %Print the module info in the command window
-    vprintf(3,'Module info:\n\tAlias:\t%s\n\tType:\t%s\n\tStatus:\t%d\n\tRPvds:\t%s\n\tFs:\t%0.3f Hz', ...
-        dinfo.name{i},dinfo.Module{i},dinfo.status(i),dinfo.RPfile{i},dinfo.Fs(i))
-    
+ 
     %Skip if the module type is unknown (PA5)
     if strcmp(dinfo.Module{i},'UNKNOWN')
         continue; 
     end
     
-    %If we're not running Synapse
-    if ~isempty(SYN_STATUS)
-        
-        %Read parameter tags using older RPVds Active X controls (legacy).
-        %These older controls penetrate into Epsych custom macros and
-        %scripts but can't be used at the same time as Synapse. Open
-        %Developer controls do not penetrate completely into macros and
-        %scripts.
-        [tags,~] = ReadRPvdsTags(dinfo.RPfile{i}); 
-    
-    %If we are running Synapse, we already found all the tags
-    else
-        tags = dinfo.devinfo(i).tags;
-    end
-    
     %Rename the tags
+    tags = dinfo.devinfo(i).tags;
     tags = cellfun(@(a) (a(2:end)),tags,'uniformoutput',false); % because all tags will begin with '#'
     
     %Check the flags
@@ -579,12 +479,6 @@ for i = 1:length(dinfo.name)
         G_FLAGS.(char(f)) = [dinfo.name{i} '.#' tags{fidx}];
     end
 end
-
-%Set monitor channel if we're not running synapse
-if ~isempty(SYN_STATUS)
-    monitor_channel_Callback(h.monitor_channel);
-end
-
 
 % Set first trial parameters
 G_COMPILED.tidx = 1;
@@ -627,32 +521,26 @@ if isfield(G_COMPILED.OPTIONS,'trialfunc') && ~isempty(G_COMPILED.OPTIONS.trialf
     end
 end
 
-%If we're running synapse
-if isempty(SYN_STATUS)
-   
-    %Find the module that's running in legacy mode
-    nMods = numel(dinfo.name);
-    
-    for m = 1:nMods
-        modInfo = SYN.getGizmoInfo(dinfo.name{m});
-        if strcmp(modInfo.cat,'Legacy')
-            ind = m;
-            break
-        end
+%Find the module that's running in legacy mode
+nMods = numel(dinfo.name);
+
+for m = 1:nMods
+    modInfo = SYN.getGizmoInfo(dinfo.name{m});
+    if strcmp(modInfo.cat,'Legacy')
+        ind = m;
+        break
     end
-    
-    mod = dinfo.name{ind};
-    
-    
-    %Adjust parameter names for synapse compatibility
-    wp = G_COMPILED.writeparams;
-    rp = G_COMPILED.readparams;
-    
-    G_COMPILED.writeparams = correctTagsSyn(wp,mod);
-    G_COMPILED.readparams = correctTagsSyn(rp,mod);
 end
 
+mod = dinfo.name{ind};
 
+
+%Adjust parameter names for synapse compatibility
+wp = G_COMPILED.writeparams;
+rp = G_COMPILED.readparams;
+
+G_COMPILED.writeparams = correctTagsSyn(wp,mod);
+G_COMPILED.readparams = correctTagsSyn(rp,mod);
 
 
 DAUpdateParams(G_DA,G_COMPILED);
@@ -683,48 +571,18 @@ vprintf(3,'Timer name: ''%s'',\tPeriod: %0.3f sec',T.Name,T.Period);
 %If user wants to record
 if strcmp(get(hObj,'String'),'Record')
     
-    %If we're not running synapse
-    if ~isempty(SYN_STATUS)
-        
-        %Use Open Developer Controls to Begin Recording
-        G_DA.SetSysMode(3); 
-        vprintf(1,'Recording session started at %s',datestr(now,'HH:MM:SS'))
-        pause(1);
-        
-        %Set up Tanks
-        ht = G_DA.GetTankName;
-        [TT,~,TDTfig] = TDT_SetupTT;
-        TT.OpenTank(ht,'R');
-        hb = TT.GetHotBlock;
-        TT.CloseTank;
-        TT.ReleaseServer;
-        delete(TT);
-        close(TDTfig);
-        vprintf(1,'\tTank:\t%s\n\tBlock:\t%s',ht,hb)
-        
-    %If we are running synapse    
-    else
-        
-        %Use Synapse API to Beign Recording
-        SYN.setModeStr('Record')
-        vprintf(1,'Recording session started at %s',datestr(now,'HH:MM:SS'))
-    end
-
-%If user wants to preview    
+    
+    %Use Synapse API to Beign Recording
+    SYN.setModeStr('Record');
+    vprintf(1,'Recording session started at %s',datestr(now,'HH:MM:SS'))
+    
+%If user wants to preview
 else
+ 
+    % Use Synapse API to preview data
+    SYN.setModeStr('Preview');
+    vprintf(1,'* Previewing data *')
     
-    %If we're not running synapse
-    if ~isempty(SYN_STATUS)
-        G_DA.SetSysMode(2); % Preview
-        vprintf(1,'* Previewing data *')
-    
-    %If we are running synapse
-    else
-        
-        %Use Synapse API to preview data
-        SYN.setModeStr('Preview')
-        vprintf(1,'* Previewing data *')
-    end
 end
 
 
@@ -744,7 +602,7 @@ set([h.control_pause,h.control_halt], 'Enable','on');
 set([h.control_preview,h.control_record], 'Enable','off');
 
 
-% Start timer
+%Start timer
 start(T);
 
 set(h.figure1,'Pointer','arrow'); drawnow
@@ -780,6 +638,8 @@ r = questdlg('Are you sure you would like to end this recording session early?',
     'HALT','Halt','Cancel','Cancel');
 if strcmp(r,'Halt'), DAHalt(h,G_DA); end
 AlwaysOnTop(h,ontop)
+
+EPhysController_CloseRequestFcn(h.figure1,[],h);
 
 function monitor_channel_Callback(hObj)
 global G_DA
