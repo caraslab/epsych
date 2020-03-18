@@ -11,14 +11,55 @@ function t = TrigDATrial(DA,trig)
 % 
 % Daniel.Stolzberg@gmail.com
 
+%Check the active X connection is valid
+%connection_check = isa(DA,'COM.TDevAcc_X') %#ok<NASGU>
 
+%Try triggering using open developer controls
+DA.GetTargetVal(trig); %check that you can read the value
 e = DA.SetTargetVal(trig,1);
-% t = hat;
-t = clock; %DJS 6/2015
-if ~e, throwerrormsg(trig); end
+t = clock; 
 pause(0.001)
 e = DA.SetTargetVal(trig,0); 
-if ~e, throwerrormsg(trig); end
+
+%If open developer controls don't work, try SYNAPSE controls
+if ~e
+    fprintf('Trying to trigger with synapse...')
+    
+    global SYN %#ok<TLEV>
+    
+   %Find the RZ6 amongst the gizmos
+    gizmo_names = SYN.getGizmoNames();
+    
+    for i = 1:numel(gizmo_names)
+        name = gizmo_names{i};
+        modInfo = SYN.getGizmoInfo(name);
+        switch modInfo.cat
+            case {'Legacy'}%RZ6
+                break
+        end
+        
+    end
+    
+    RZ6 = gizmo_names{i};
+    
+    %Rename the trigger so it's compatible with the SYNAPSE API syntax
+    trig = trig(strfind(trig,'.')+1:end);
+
+    %Set and reset the trigger value here
+    e = SYN.setParameterValue(RZ6,trig,1);
+    t = clock;
+    pause(0.001)
+    e = SYN.setParameterValue(RZ6,trig,0);
+  
+end
+
+%If synapse controls also don't work, throw an error
+if ~e
+    throwerrormsg(trig);
+end
+
+
+
 
 function throwerrormsg(trig)
 beep

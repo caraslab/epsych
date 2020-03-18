@@ -147,7 +147,21 @@ switch COMMAND
             %Create open developer active X controls and connect to server
             %(for operation in legacy mode)
             AX = actxcontrol('TDevAcc.X','parent',ha);
-            AX.ConnectServer('Local');
+            
+            %Connect the server and verify it's connected. Note: Sometimes,
+            %the open developer command "ConnectServer" will return true,
+            %but subsequent attempt to set tags fails. The following code
+            %ensures that the server is connected and tags can be read/set
+            %before continuing. This suggestion was made by Mark Hanus of
+            %TDT on 3/18/2020.
+            status = 0;
+            
+            while status == 0
+                AX.ConnectServer('Local');
+                status = AX.CheckServerConnection
+            end
+            
+            
             
             %Get Device Names and Sampling rates
             RUNTIME.TDT = TDT_GetDeviceInfo_v2(SYN);

@@ -16,7 +16,6 @@ function varargout = cl_UpdateRuntime(varargin)
 %Written by ML Caras 7.28.2016
 %Updated by ML Caras 10.19.2019
 
-
 if nargin == 0
     global RUNTIME AX %#ok<TLEV>
     
@@ -55,7 +54,7 @@ if nargin == 0
 else
     RUNTIME = varargin{1};
     AX = varargin{2};
-    
+
     for i = 1:RUNTIME.NSubjects
         
         %Increment trial index
