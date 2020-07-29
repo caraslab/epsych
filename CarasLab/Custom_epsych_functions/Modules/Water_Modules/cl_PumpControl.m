@@ -21,8 +21,22 @@ if ~isempty(out)
     delete(out);
 end
 
-%Create a serial connection to the pump
-pump = serial('com6','BaudRate',19200,'DataBits',8,'StopBits',1,'TimerPeriod',0.1);
+%Create a serial connection to the pump. Each rig uses a different COM
+%port.Note that the COM port can change depending on which USB port the 
+%pump is plugged into. If moving or re-assembling the rig for any reason, 
+%beware!
+
+username=getenv('USERNAME');
+
+switch username
+    case 'Rig 1'
+        %Rig 1 uses COM6
+        pump = serial('com6','BaudRate',19200,'DataBits',8,'StopBits',1,'TimerPeriod',0.1);
+    case 'Rig 2'
+        %Rig 2 uses COM3
+        pump = serial('com3','BaudRate',19200,'DataBits',8,'StopBits',1,'TimerPeriod',0.1);  
+end
+
 fopen(pump);
 
 warning('off','MATLAB:serial:fscanf:unsuccessfulRead')
