@@ -22,7 +22,7 @@ function varargout = cl_basic_characterization(varargin)
 
 % Edit the above text to modify the response to help cl_basic_characterization
 
-% Last Modified by GUIDE v2.5 24-Nov-2019 10:18:24
+% Last Modified by GUIDE v2.5 10-Dec-2020 10:46:21
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -185,7 +185,6 @@ elseif isempty(SYN_STATUS)
 end
 
 
-
 %OPTOGENETIC TRIGGER
 function opto_button_panel_SelectionChangeFcn(hObject, eventdata, handles)
 global G_DA
@@ -202,21 +201,11 @@ switch get(eventdata.NewValue,'String')
 end
 guidata(hObject,handles)
 
-%RESET LFP AVERAGING
-function ResetLFP_Callback(hObject, ~, handles)
-global G_DA
+%DELIVER AIRPUFF
+function airpuff_Callback(hObject, ~, handles)
 
-h = cl_FindModuleIndex('RZ5', handles);
+handles = cl_Callback_Airpuff(handles);
 
-%Send trigger to reset averaging
-G_DA.SetTargetVal([h.module,'.ResetAvg'],1);
-
-ResetStatus = G_DA.GetTargetVal([h.module,'.ResetAvg']) %#ok<*NOPRT,*NASGU>
-
-%Reset trigger to low
-G_DA.SetTargetVal([h.module,'.ResetAvg'],0);
-
-ResetStatus = G_DA.GetTargetVal([h.module,'.ResetAvg']) %#ok<*NOPRT,*NASGU>
 
 guidata(hObject,handles)
 
