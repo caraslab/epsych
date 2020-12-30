@@ -26,5 +26,8 @@ logpath = getpref('PSYCH','logfiledir',defaultpath);
    
 
 %Set the path for log file storage
-subject = CONFIG.SUBJECT.Name;
-GLogFID = fopen(fullfile(logpath,[subject,'_',sprintf('%s',datestr(now,'ddmmmyyyy'))]),'at');
+try
+    subject = CONFIG.SUBJECT.Name;
+    GLogFID = fopen(fullfile(logpath,[subject,'_',sprintf('%s',datestr(now,'ddmmmyyyy'))]),'at');
+catch
+end

@@ -1,5 +1,5 @@
 function [handles,AX] = cl_InitializePhysiology(handles,AX)
-%[handles,AX] = cl_InitializePhysiology(handles,AX)
+%[handles,AX] = cl_InitializePhysiology(varargin)
 %
 %Custom function for Caras Lab
 %
@@ -20,8 +20,10 @@ function [handles,AX] = cl_InitializePhysiology(handles,AX)
 %Updated 2.20.2018. (RZ2 compatibility)
 %Updated 4.12.2018. (Synapse compatibility)
 %Updated 10.19.2019
+%Updated 12.30.2020
 
 global RUNTIME SYN_STATUS SYN
+
 
 %If we're running synapse
 if isempty(SYN_STATUS)
@@ -69,9 +71,10 @@ if isempty(SYN_STATUS)
     %the command: setParameterValues (not SetParameterValue)
     SYN.setParameterValues(gizmo,'WeightMatrix',WeightMatrix);
     
-    %Enable reference physiology button in gui
-    set(handles.ReferencePhys,'enable','on')
-    
+    if ~isempty(handles)
+        %Enable reference physiology button in gui
+        set(handles.ReferencePhys,'enable','on')
+    end
 
 %If we're not running synapse    
 else
