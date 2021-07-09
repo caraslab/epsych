@@ -13,10 +13,10 @@ function cl_SaveDataFcn(RUNTIME)
 global SYN_STATUS
 
 %If the save directory preference already exists, use it
-defaultpath = pwd;
-savedir = getpref('PSYCH','savedir',defaultpath);
-
-
+% defaultpath = pwd;
+% savedir = getpref('PSYCH','savedir',defaultpath);
+savedir = 'D:\matlab_data_files\'; % DJS 7/2021
+ 
 datestr = date;
 %For each subject...
 for i = 1:RUNTIME.NSubjects
@@ -28,7 +28,7 @@ for i = 1:RUNTIME.NSubjects
     uiwait(h);
     
     %Default filename
-    filename = fullfile(savedir,[ID,'_', datestr,'.mat']);
+    filename = fullfile(savedir,ID,[ID,'_', datestr,'.mat']);
     fn = 0;
     
     %Force the user to save the file
@@ -39,7 +39,7 @@ for i = 1:RUNTIME.NSubjects
     fileloc = fullfile(pn,fn);
     
     %Update saving directory preference
-    setpref('PSYCH','savedir',pn);
+%     setpref('PSYCH','savedir',pn); % DJS 7/2021
     
     %Save all relevant information
     Data = RUNTIME.TRIALS(i).DATA;

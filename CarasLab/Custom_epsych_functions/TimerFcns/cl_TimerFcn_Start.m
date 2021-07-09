@@ -31,13 +31,12 @@ if ~isdir(RUNTIME.DataDir), mkdir(RUNTIME.DataDir); end
 
 RUNTIME.NSubjects = length(CONFIG);
 
-
 %For each subject...
 for i = 1:RUNTIME.NSubjects
     C = CONFIG(i);
-       
+    
     RUNTIME.TRIALS(i).trials     = C.PROTOCOL.COMPILED.trials;
-    RUNTIME.TRIALS(i).TrialCount = zeros(size(RUNTIME.TRIALS(i).trials,1),1); 
+    RUNTIME.TRIALS(i).TrialCount = zeros(size(RUNTIME.TRIALS(i).trials,1),1);
     RUNTIME.TRIALS(i).trialfunc  = C.PROTOCOL.OPTIONS.trialfunc;
    
     for j = 1:length(RUNTIME.TRIALS(i).readparams)
@@ -133,6 +132,9 @@ for i = 1:RUNTIME.NSubjects
             RUNTIME.TRIALS(i).DATA.Expected_prob = [];
             RUNTIME.TRIALS(i).DATA.RepeatNOGOcheckbox = [];
             RUNTIME.TRIALS(i).DATA.RewardVol= [];
+            
+        case 'cl_basic_characterization_intan'
+            RUNTIME.TRIALS(i).DATA.NextTrialID = 1;
     end
 
 end
