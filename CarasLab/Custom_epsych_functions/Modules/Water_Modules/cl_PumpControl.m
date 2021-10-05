@@ -35,6 +35,8 @@ switch username
     case 'Rig 2'
         %Rig 2 uses COM3
         pump = serial('com3','BaudRate',19200,'DataBits',8,'StopBits',1,'TimerPeriod',0.1);  
+    case 'Caras Lab' %Rig 3 in 4275
+       pump = serial('com4','BaudRate',19200,'DataBits',8,'StopBits',1,'TimerPeriod',0.1);
 end
 
 fopen(pump);
